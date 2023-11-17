@@ -1,0 +1,18 @@
+version: "3"
+services:
+  cassandra:
+    container_name: cassandra
+    image: cassandra:latest
+    networks: [sklep_network]
+  sklep:
+    container_name: pis-sklep
+    build:
+      context: .
+      dockerfile: backend/sklep/Dockerfile
+    image: pis-sklep:latest
+    networks: [sklep_network]
+    depends_on: [cassandra]
+
+networks:
+  sklep_network:
+    name: sklep_network
