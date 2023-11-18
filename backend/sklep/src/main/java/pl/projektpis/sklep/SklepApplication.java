@@ -1,4 +1,4 @@
-package pl.prokektpis.sklep;
+package pl.projektpis.sklep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
 version: "3"
 services:
   cassandra:
-    container_name: cassandra
+    container_name: cassandra-container
     image: cassandra:latest
     networks: [sklep_network]
   sklep:

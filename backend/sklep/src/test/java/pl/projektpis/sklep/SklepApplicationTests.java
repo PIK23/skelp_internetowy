@@ -1,4 +1,4 @@
-package pl.prokektpis.sklep;
+package pl.projektpis.sklep;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
