@@ -5,18 +5,24 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo 'Building $BRANCH_NAME'
                     sh './build.sh'
                 }
             }
         }
-        stage('Collect artifacts'){
+        stage('Test') {
+            steps {
+                sh 'cd backend/sklep && ./mvnw test'
+            }
+        }
+        stage('Collect artifacts') {
             when {
                 expression {
-                    return env.BRANCH_NAME != 'master';
+                    return env.BRANCH_NAME == 'master';
                 }
             }
             steps {
-                echo 'Collecting artifacts (backend/sklep/target/*.jar)'
+                echo 'Collecting artifacts from master (backend/sklep/target/*.jar)'
             }
         }
     }
