@@ -9,6 +9,16 @@ pipeline {
                 }
             }
         }
+        stage('Collect artifacts'){
+            when {
+                expression {
+                    return env.BRANCH_NAME != 'master';
+                }
+            }
+            steps {
+                echo 'Collecting artifacts (backend/sklep/target/*.jar)'
+            }
+        }
     }
 }
 
