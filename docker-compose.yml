@@ -9,6 +9,9 @@ services:
     build:
       context: .
       dockerfile: backend/sklep/Dockerfile
+    
+    ports:
+      - "8080:8080"
     image: pis-sklep:latest
     networks: [sklep_network]
     restart: unless-stopped
