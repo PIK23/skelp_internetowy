@@ -1,5 +1,15 @@
 version: "3"
 services:
+  frontend:
+    container_name: nodejs-frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: nodejs-frontend:latest
+    networks: [sklep_network]
+    ports:
+      - "3000:3000"
+
   cassandra:
     container_name: cassandra-container
     image: cassandra:latest
@@ -10,8 +20,8 @@ services:
       context: .
       dockerfile: backend/sklep/Dockerfile
     
-    ports:
-      - "8080:8080"
+    # ports:
+    #   - "8080:8080"
     image: pis-sklep:latest
     networks: [sklep_network]
     restart: unless-stopped
