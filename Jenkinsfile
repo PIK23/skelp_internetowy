@@ -23,6 +23,7 @@ pipeline {
             }
             steps {
                 echo 'Collecting artifacts from master (backend/sklep/target/*.jar)'
+                archiveArtifacts artifacts: 'backend/sklep/target/sklep-0.0.1-SNAPSHOT.jar', fingerprint: true
             }
         }
     }
