@@ -48,6 +48,17 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexusSnapshot</id>
+            <url>http://localhost:8081/repository/sklep-backend-snapshot/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexusRelease</id>
+            <url>http://localhost:8081/repository/sklep-backend-release/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
