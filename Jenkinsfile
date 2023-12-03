@@ -18,7 +18,7 @@ pipeline {
         stage('Collect artifacts') {
             steps {
                 dir('backend/sklep') {
-                   sh './mvnw -X deploy'
+                   sh './mvnw help:effective-settings'
                }
             }
         }
