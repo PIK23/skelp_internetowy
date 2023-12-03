@@ -16,16 +16,14 @@ pipeline {
             }
         }
         stage('Collect artifacts') {
-            when {
-                expression {
-                    return env.BRANCH_NAME == 'master';
-                }
-            }
             steps {
-                echo 'Collecting artifacts from master (backend/sklep/target/*.jar)'
-                archiveArtifacts artifacts: 'backend/sklep/target/sklep-0.0.1-SNAPSHOT.jar', fingerprint: true
+                dir('backend/sklep') {
+                   sh './mvnw deploy'
+               }
+                dir('frontend') {
+                   sh 'npm publish --registry http://localhost:8081/repository/sklep-frontend'
+               }
             }
         }
     }
 }
-
