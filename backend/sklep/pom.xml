@@ -50,11 +50,11 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>nexusSnapshot</id>
+            <id>sklep-backend-snapshot</id>
             <url>http://localhost:8081/repository/sklep-backend-snapshot/</url>
         </snapshotRepository>
         <repository>
-            <id>nexusRelease</id>
+            <id>sklep-backend-release</id>
             <url>http://localhost:8081/repository/sklep-backend-release/</url>
         </repository>
     </distributionManagement>
