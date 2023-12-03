@@ -1,14 +1,14 @@
 version: "3"
 services:
   frontend:
-    container_name: nodejs-frontend
-    build:
-      context: frontend
-      dockerfile: Dockerfile
-    image: nodejs-frontend:latest
+    container_name: nginx-react-app
+    image: nginx:latest
     networks: [sklep_network]
     ports:
-      - "3000:3000"
+      - "8080:8080"
+    volumes:
+      - ./ngnix:/etc/nginx/conf.d
+      - ./frontend/build:/app/static
 
   cassandra:
     container_name: cassandra-container
@@ -23,7 +23,8 @@ services:
       dockerfile: backend/sklep/Dockerfile
     
     # ports:
-    #   - "8080:8080"
+    #   - "1234:1234" #api, z ktorym rozmawia frontend
+    #   #@TODO sprawdzic czy frontend widzi ten port w sklep_network
     image: pis-sklep:latest
     networks: [sklep_network]
     restart: unless-stopped
