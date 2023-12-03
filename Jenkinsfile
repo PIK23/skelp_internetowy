@@ -18,11 +18,12 @@ pipeline {
         stage('Collect artifacts') {
             steps {
                 dir('backend/sklep') {
-                   sh './mvnw help:effective-settings'
                    sh './mvnw deploy'
+               }
+                dir('frontend') {
+                   sh 'npm publish --registry http://localhost:8081/repository/sklep-frontend'
                }
             }
         }
     }
 }
-
