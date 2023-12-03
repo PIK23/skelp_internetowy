@@ -19,6 +19,7 @@ pipeline {
             steps {
                 dir('backend/sklep') {
                    sh './mvnw help:effective-settings'
+                   sh './mvnw deploy'
                }
             }
         }
