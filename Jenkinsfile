@@ -37,7 +37,10 @@ pipeline {
                 sh 'cp backend/sklep/target/*.jar /var/www/sklep_internetowy/backend/target'
                 sh 'cp -r frontend/build /var/www/sklep_internetowy/frontend/build'
                 // sh 'docker-compose down pis-sklep && docker-compose up pis-sklep'    
-                sh 'docker-compose restart'    
+                
+                // copy the compose file as well, in case it got changed
+                sh 'cp docker-compose.yml /var/www/docker-compose.yml'
+                sh 'cd /var/www && docker-compose restart' //use this script    
             }
         }
     }
