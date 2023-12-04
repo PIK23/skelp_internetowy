@@ -37,8 +37,7 @@ pipeline {
                 sh 'cp backend/sklep/target/*.jar /var/www/sklep_internetowy/backend/target'
                 sh 'cp -r frontend/build /var/www/sklep_internetowy/frontend/build'
                 // sh 'docker-compose down pis-sklep && docker-compose up pis-sklep'    
-                sh 'whoami'
-                sh 'docker-compose down && docker-compose up -d'    
+                sh 'docker-compose restart'    
             }
         }
     }
