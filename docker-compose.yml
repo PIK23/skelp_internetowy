@@ -23,8 +23,7 @@ services:
       dockerfile: backend/sklep/Dockerfile
     
     # ports:
-    #   - "1234:1234" #api, z ktorym rozmawia frontend
-    #   #@TODO sprawdzic czy frontend widzi ten port w sklep_network
+       - "1234:1234" #api, z ktorym rozmawia frontend
     image: pis-sklep:latest
     networks: [sklep_network]
     restart: unless-stopped
