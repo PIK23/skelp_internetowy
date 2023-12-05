@@ -34,8 +34,8 @@ pipeline {
                     }
                 }
             steps {
-                sh 'mkdir -p /var/www/sklep_internetowy/backend/target /var/www/sklep_internetowy/frontend/build'
-                sh 'cp backend/sklep/target/*.jar /var/www/sklep_internetowy/backend/target'
+                sh 'mkdir -p /var/www/sklep_internetowy/backend/sklep/target /var/www/sklep_internetowy/frontend/build'
+                sh 'cp backend/sklep/target/*.jar /var/www/sklep_internetowy/backend/sklep/target'
                 sh 'cp -r frontend/build /var/www/sklep_internetowy/frontend'
                 // sh 'docker-compose down pis-sklep && docker-compose up pis-sklep'    
                 
