@@ -19,7 +19,7 @@ pipeline {
         stage('Collect artifacts') {
             steps {
                 dir('backend/sklep') {
-                   sh './mvnw deploy'
+                   sh './mvnw deploy -Dmaven.test.skip'
                }
                 dir('frontend') {
                    sh 'npm publish --registry http://localhost:8081/repository/sklep-frontend'
