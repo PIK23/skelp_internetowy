@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: backend/sklep/Dockerfile
     
-    # ports:
+    ports:
        - "1234:1234" #api, z ktorym rozmawia frontend
     image: pis-sklep:latest
     networks: [sklep_network]
