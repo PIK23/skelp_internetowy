@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@SpringBootTest
 @ActiveProfiles("test")
 @WebMvcTest
-class SklepApplicationTests {
+public class SklepApplicationIT {
 
     @Test
     void contextLoads() {
