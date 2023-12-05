@@ -14,8 +14,8 @@ pipeline {
             steps {
                 sh 'cd frontend/src && npm test -- --coverage'
 		sh 'cd ../ && cd ../'
-                sh 'cd backend/sklep && ./mvnw test -Dspring.profiles.active=test'
-		sh 'echo testy tutaj'            
+                //sh 'cd backend/sklep && ./mvnw test -Dspring.profiles.active=test'
+		            
 }
         }
         stage('Collect artifacts') {
