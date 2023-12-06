@@ -10,6 +10,7 @@ import pl.projektpis.sklep.repository.ProductRepository;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ProductsController {
 
     @Autowired
