@@ -16,17 +16,7 @@ pipeline {
 		sh 'cd ../ && cd ../'
                 sh 'cd backend/sklep && ./mvnw test -Dspring.profiles.active=test'
 		  
-        }   post {
-        success {
-            jacoco(
-                execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
-            )
-        }
-    }
-		            
-}
+        }  
         stage('Collect artifacts') {
             steps {
                 dir('backend/sklep') {
@@ -56,4 +46,15 @@ pipeline {
             }
         }
     }
+	     post {
+        success {
+            jacoco(
+                execPattern: '**/build/jacoco/*.exec',
+                classPattern: '**/build/classes/java/main',
+                sourcePattern: '**/src/main'
+            )
+        }
+    }
+		            
+}
 }
