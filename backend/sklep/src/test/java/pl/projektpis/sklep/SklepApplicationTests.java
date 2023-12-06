@@ -19,6 +19,6 @@ class SklepApplicationTests {
     @Test
     void twoplustwo(){
         assertThat(2+2).isEqualTo(4);
-    }
+    }  
 
 }
