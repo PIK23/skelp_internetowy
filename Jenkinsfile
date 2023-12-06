@@ -15,10 +15,6 @@ pipeline {
                 sh 'cd frontend/src && npm test -- --coverage'
 		sh 'cd ../ && cd ../'
                 sh 'cd backend/sklep && ./mvnw test -Dspring.profiles.active=test'
-		    jacoco(
-                execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
             )  
         }  
         stage('Collect artifacts') {
