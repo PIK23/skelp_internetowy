@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.png';
 import apple from './apple.jpg'
 import phone from './phone.jpg'
+import cart from './cart.png'
 import './App.css';
 
 class ProductItem extends React.Component {
+  handleAddToCart = () => {
+    console.log(`Product added to cart: ${this.props.product.name}`);
+  }
   render() {
     const {product} = this.props; // ES6 destructuring
     return (
@@ -15,6 +19,9 @@ class ProductItem extends React.Component {
         <td>{product.weight}</td>
         <td>{product.dimensions}</td>
         <td><img alt={product.name} src={product.photo} height="64px"/></td>
+        <td>
+          <button onClick={this.handleAddToCart}><img type="submit" alt="Add to cart" src={cart} height="64px"/></button>
+        </td>
       </tr>
     )
   }
@@ -23,7 +30,8 @@ class Content extends React.Component {
   render() {
     const {products} = this.props; // ES6 destructuring
     return (
-        <table class="table">
+      <div className="Content">
+        <table>
           <thead>
             <tr>
               <th>Name</th>
@@ -38,6 +46,7 @@ class Content extends React.Component {
             {products.map((product) => <ProductItem key={product.name} product={product} />)}
           </tbody>
         </table>
+        </div>
     )
   }
 }
@@ -103,7 +112,6 @@ const App = () => {
 export default App;
 
 // TODO
-// rozciagnac naglowki na cala strone
 // zawijac description
 // ograniczyc liczbe wyswietlanych na jednej stronie
 // poprawic fetch
