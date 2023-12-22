@@ -14,7 +14,7 @@ class ProductItem extends React.Component {
     return (
       <tr>
         <td>{product.name}</td>
-        <td>{product.description}</td>
+        <td className="description">{product.description}</td>
         <td>{product.price}</td>
         <td>{product.weight}</td>
         <td>{product.dimensions}</td>
@@ -56,7 +56,7 @@ const App = () => {
   const sampleData = [
     {
       name: 'Apple',
-      description: 'Definitely an apple',
+      description: 'Definitely an apple aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       price: 3999.99,
       weight: '0.3 kg',
       dimensions: '10x5x2 cm',
@@ -112,7 +112,6 @@ const App = () => {
 export default App;
 
 // TODO
-// zawijac description
 // ograniczyc liczbe wyswietlanych na jednej stronie
 // poprawic fetch
-//
+// dodac przezroczystość do koszyka
