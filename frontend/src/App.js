@@ -107,3 +107,4 @@ export default App;
 // zawijac description
 // ograniczyc liczbe wyswietlanych na jednej stronie
 // poprawic fetch
+//
