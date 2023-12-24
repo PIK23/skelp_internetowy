@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductDetail from './routes/ProductDetail';
 import ProductList from './routes/ProductList'
+import Header from './routes/Header';
 import logo from './logo.png';
 import apple from './apple.jpg'
 import phone from './phone.jpg'
@@ -50,24 +51,15 @@ const App = () => {
   console.log('Render komponentu. Aktualne dane:', data);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Router>
-          <Routes>
-            <Route
-              path="/details/:id"
-              element={<ProductDetail products={sampleData} />}
-            />
-            <Route
-              path="/"
-              element={<ProductList products={sampleData} />}
-            />
-          </Routes>
+<div className="App">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/details/:id" element={<ProductDetail products={sampleData} />} />
+          <Route path="/" element={<ProductList products={sampleData} />} />
+        </Routes>
       </Router>
-      {/* <span className="CI/CD test">Hello</span> */}
-      </header>
-  </div>
+    </div>
   )
 };
 
@@ -77,7 +69,6 @@ export default App;
 // ograniczyc liczbe wyswietlanych na jednej stronie
 // poprawic fetch
 // dodac przezroczystość do koszyka
-// npm install react-router-dom
 
     //     {/* dodawanie przez fetch
     //     {data && <Content products={data} />}  */}

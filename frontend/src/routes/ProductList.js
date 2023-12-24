@@ -20,7 +20,7 @@ const ProductList = ({ products }) => {
                 </td>
                 <td>{product.price}</td>
                 <td>
-                    <button onClick={() => handleAddToCart(product.name)}>
+                    <button onClick={() => handleAddToCart(product.name)} className='cart'>
                     <img alt="Add to cart" src={cart} height="64px" />
                     </button>
                 </td>
