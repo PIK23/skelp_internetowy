@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductDetail from './routes/ProductDetail';
 import ProductList from './routes/ProductList'
 import Header from './routes/Header';
-import logo from './logo.png';
+import { UserProvider } from './routes/UserContext';
+import Login from './routes/Login';
 import apple from './apple.jpg'
 import phone from './phone.jpg'
 import './App.css';
 
 const App = () => {
   const [data, setData] = useState(null);
+
   const sampleData = [
     {
       name: 'Apple',
@@ -51,15 +53,18 @@ const App = () => {
   console.log('Render komponentu. Aktualne dane:', data);
 
   return (
-<div className="App">
+  <div className="App">
+    <UserProvider>
       <Router>
         <Header />
         <Routes>
           <Route path="/details/:id" element={<ProductDetail products={sampleData} />} />
           <Route path="/" element={<ProductList products={sampleData} />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
-    </div>
+    </UserProvider>
+  </div>
   )
 };
 
