@@ -21,11 +21,11 @@ public class ProductsController {
         return productRepository.findAll();
     }
 
+    // expect json object with needed fields
     @PostMapping("/products")
-    public String newProduct(String name, Double price) {
-        Product product = new Product(Uuids.timeBased(),name,price);
+    public String newProduct(@RequestBody Product product) {
         productRepository.save(product);
-        return String.format("Added new product '%s'", name);
+        return String.format("Added new product '%s'", product.getNazwa());
 
     }
 
