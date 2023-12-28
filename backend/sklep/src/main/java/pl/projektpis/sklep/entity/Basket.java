@@ -11,6 +11,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import pl.projektpis.sklep.repository.ProductRepository;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -31,23 +32,25 @@ public class Basket {
 
     public void addProduct(Product p){
 
-        if (products==null)
-        {
-            this.products = new LinkedList<>();
-        }
+        if (products==null) this.products = new LinkedList<>();
         products.add(p);
     }
 
-    public void removeProductByName(String name){
-        Product p = productRepository.findByNazwa(name).orElseThrow(() -> new ResourceNotFoundException("Product not found in basket."));
-        removeProduct(p);
-    }
-
-    private void removeProduct(Product p){
-        products.remove(p);
+    // don't fetch from repository by id and .remove!!!! it will be different java object
+    public void removeProductById(UUID id){
+        // is this possible with spring data directly? deleteProductById something
+        if (this.products==null) return;
+        Iterator<Product> itr = this.products.iterator();
+        while(itr.hasNext()) {
+            if(itr.next().getId().equals(id)) {
+                itr.remove();
+                break;
+            }
+        }
     }
 
     public Double getTally(){
+        if (this.products==null) return 0.0;
         return products.stream().mapToDouble(Product::getCena).sum();
     }
 
@@ -57,4 +60,7 @@ public class Basket {
     private LinkedList<Product> products;
 
 
+    public void clear() {
+        this.products.clear();
+    }
 }

@@ -40,5 +40,21 @@ public class BasketController {
         basketRepository.save(basket);
     }
 
+    @RequestMapping(value = "/basket", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void removeProductFromBasket(@RequestParam UUID owner, @RequestParam(required = false) UUID product, @RequestParam(required = false, defaultValue = "False") Boolean clear) {
+        Basket basket = basketRepository.findOneByOwner(owner).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid basket id"));
+        if (clear){
+            basket.clear();
+        }
+        else{
+            basket.removeProductById(product);
+        }
+        basketRepository.save(basket);
+    }
+
+
+
+
+
 
 }
