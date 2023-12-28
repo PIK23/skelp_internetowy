@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 import java.util.Base64;
 import java.util.UUID;
@@ -14,6 +15,7 @@ import java.util.UUID;
 //@AllArgsConstructor
 //@NoArgsConstructor
 @Getter // potrzebne do RestController
+@UserDefinedType //needed to allow List<Product> in basket
 public class Product {
 
     public Product(String nazwa, String opis, Double cena, Double waga, String wymiary, String zdjecie_base64)
