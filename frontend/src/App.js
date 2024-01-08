@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductDetail from './routes/ProductDetail';
 import ProductList from './routes/ProductList'
 import Header from './routes/Header';
+import Cart from './routes/Cart';
 import { UserProvider } from './routes/UserContext';
 import Login from './routes/Login';
 import './App.css';
@@ -29,24 +30,24 @@ const App = () => {
     }
   ];
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:8080/products');
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! Status: ${response.status}`);
-  //       }
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://localhost:1234/products');
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-  //       const jsonData = await response.json();
-  //       console.log('Pobrane dane:', jsonData);
-  //       setData(jsonData);
-  //     } catch (error) {
-  //       console.error('Błąd pobierania danych:', error.message);
-  //     }
-  //   };
+          const jsonData = await response.json();
+          console.log('Pobrane dane:', jsonData);
+          setData(jsonData);
+        } catch (error) {
+          console.error('Błąd pobierania danych:', error.message);
+        }
+      };
 
-  //   fetchData();
-  // }, []);
+      fetchData();
+    }, []);
 
   console.log('Render komponentu. Aktualne dane:', data);
 
@@ -58,7 +59,9 @@ const App = () => {
         <Routes>
           <Route path="/details/:id" element={<ProductDetail products={sampleData} />} />
           <Route path="/" element={<ProductList products={sampleData} />} />
+          {/* <Route path="/" element={<ProductList products={data} />} /> */}
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </UserProvider>
@@ -69,9 +72,4 @@ const App = () => {
 export default App;
 
 // TODO
-// ograniczyc liczbe wyswietlanych na jednej stronie
-// poprawic fetch
-// dodac przezroczystość do koszyka
-
-    //     {/* dodawanie przez fetch
-    //     {data && <Content products={data} />}  */}
+//odkomentować pobieranie przez fetch
