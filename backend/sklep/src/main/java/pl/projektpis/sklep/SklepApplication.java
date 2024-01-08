@@ -1,13 +1,29 @@
 package pl.projektpis.sklep;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import pl.projektpis.sklep.entity.Basket;
+import pl.projektpis.sklep.repository.BasketRepository;
+
+import java.util.UUID;
 
 @SpringBootApplication
 public class SklepApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SklepApplication.class, args);
+    @Autowired
+    private BasketRepository basketRepository;
+
+    public static void main(String[] args) {SpringApplication.run(SklepApplication.class, args);}
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
+        UUID id = UUID.randomUUID();
+        System.out.println("Testowy koszyk: "+id.toString());
+        Basket testBasket = new Basket(id);
+        basketRepository.save(testBasket);
     }
 
 }
