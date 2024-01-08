@@ -18,8 +18,11 @@ public class ProductsController {
     private ProductRepository productRepository;
 
     @RequestMapping(value = "/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public @ResponseBody List<Product> getAllProducts(@RequestParam(required = false) Double maxPrice) {
+        if (maxPrice!=null)
+            return productRepository.findByCenaLessThanEqual(maxPrice);
+        else
+            return productRepository.findAll();
     }
 
     // expect json object with needed fields

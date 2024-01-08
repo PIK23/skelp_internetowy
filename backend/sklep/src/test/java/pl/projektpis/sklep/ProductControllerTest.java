@@ -44,7 +44,7 @@ class ProductControllerTest {
         Mockito.when(repo.findAll()).thenReturn(fakeRepo);
 
         controller.newProduct(p);
-        LinkedList<Product> l = (LinkedList<Product>) controller.getAllProducts();
+        LinkedList<Product> l = (LinkedList<Product>) controller.getAllProducts(null);
         System.out.println(l);
         assertTrue(l.contains(p));
     }
