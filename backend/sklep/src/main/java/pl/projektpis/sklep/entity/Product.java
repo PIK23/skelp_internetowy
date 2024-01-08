@@ -18,9 +18,9 @@ import java.util.UUID;
 @UserDefinedType //needed to allow List<Product> in basket
 public class Product {
 
-    public Product(String nazwa, String opis, Double cena, Double waga, String wymiary, String zdjecie_base64)
+    public Product(String nazwa, String opis, Double cena, Double waga, String wymiary, String image_base64)
     {
-        this.zdjecie_base64 = zdjecie_base64;
+        this.image_base64 = image_base64;
         this.id = Uuids.timeBased();
         this.nazwa = nazwa;
         this.opis = opis;
@@ -37,5 +37,5 @@ public class Product {
     private Double cena;
     private Double waga;
     private String wymiary;
-    private String zdjecie_base64;
+    private String image_base64;
 }

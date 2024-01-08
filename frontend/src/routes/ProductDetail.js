@@ -9,14 +9,21 @@ const ProductDetail = ({ products }) => {
     return <div>Can't find the product: {id}.</div>;
   }
 
+  let pr = 'g';
+  let waga = product.waga;
+  if (product.waga/1000 > 1) {
+    pr = 'kg';
+    waga = product.waga/1000;
+  }
+  
   return (
     <div className='Margin'>
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p>Price: {product.price} zł</p>
-      <p>Weight: {product.weight}</p>
-      <p>Dimensions: {product.dimensions}</p>
-      <img src={product.photo} alt={product.name} />
+      <h2>{product.nazwa}</h2>
+      <p>{product.opis}</p>
+      <p>Price: {product.cena} zł</p>
+      <p>Weight: {waga + pr}</p>
+      <p>Dimensions: {product.wymiary}</p>
+      <img src={"data:image/png;base64," +product.image_base64} alt={product.nazwa} />
     </div>
   );
 };

@@ -5,50 +5,29 @@ import ProductList from './routes/ProductList'
 import Header from './routes/Header';
 import { UserProvider } from './routes/UserContext';
 import Login from './routes/Login';
-import apple from './apple.jpg'
-import phone from './phone.jpg'
 import './App.css';
 
 const App = () => {
   const [data, setData] = useState(null);
 
-  const sampleData = [
-    {
-      name: 'Apple',
-      description: 'Definitely an apple aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      price: 3999.99,
-      weight: '0.3 kg',
-      dimensions: '10x5x2 cm',
-      photo: apple,
-    },
-    {
-      name: 'Phone',
-      description: 'Some phone',
-      price: 1499.99,
-      weight: '0.5 kg',
-      dimensions: '10x20x2 cm',
-      photo: phone,
-    }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:1234/products');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:8080/products');
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! Status: ${response.status}`);
-  //       }
+        const jsonData = await response.json();
+        console.log('Pobrane dane:', jsonData);
+        setData(jsonData);
+      } catch (error) {
+        console.error('Błąd pobierania danych:', error.message);
+      }
+    };
 
-  //       const jsonData = await response.json();
-  //       console.log('Pobrane dane:', jsonData);
-  //       setData(jsonData);
-  //     } catch (error) {
-  //       console.error('Błąd pobierania danych:', error.message);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   console.log('Render komponentu. Aktualne dane:', data);
 
@@ -57,11 +36,16 @@ const App = () => {
     <UserProvider>
       <Router>
         <Header />
-        <Routes>
-          <Route path="/details/:id" element={<ProductDetail products={sampleData} />} />
-          <Route path="/" element={<ProductList products={sampleData} />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        { data ? (
+          <Routes>
+            <Route path="/details/:id" element={<ProductDetail products={data} />} />
+            <Route path="/" element={<ProductList products={data} />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        ): (
+          <p>Ładu Ładu..</p>
+        )}
+        
       </Router>
     </UserProvider>
   </div>
