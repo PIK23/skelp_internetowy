@@ -28,6 +28,11 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
     @Override
+    public String getContactPoints() {
+	return "cassandra-container";
+    }
+
+    @Override
     public SchemaAction getSchemaAction() {
         return SchemaAction.CREATE_IF_NOT_EXISTS;
     }

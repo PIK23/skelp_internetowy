@@ -9,6 +9,9 @@ services:
     volumes:
       - ./ngnix:/etc/nginx/conf.d
       - ./frontend/build:/app/static
+    depends_on:
+      - sklep
+
 
   cassandra:
     container_name: cassandra-container
