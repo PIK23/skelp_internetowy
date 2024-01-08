@@ -16,7 +16,8 @@ const ProductDetail = ({ products }) => {
       <p>Price: {product.price} zł</p>
       <p>Weight: {product.weight}</p>
       <p>Dimensions: {product.dimensions}</p>
-      <img src={product.photo} alt={product.name} />
+      {product.photo && (<img alt={product.name} src={product.photo} height="128px" style={{ marginRight: '10px' }}/>
+      )}
     </div>
   );
 };

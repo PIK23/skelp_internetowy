@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <div>
         <div>
-        <label for="uname"><b>Username</b></label>
+        <label><b>Username</b></label>
         <input
           type="text"
           placeholder="Enter Username"
@@ -24,7 +24,7 @@ const Login = () => {
         />
         <div>
         </div>
-        <label for="psw"><b>Password</b></label>
+        <label><b>Password</b></label>
         <input
           type="password"
           placeholder="Enter Password"
