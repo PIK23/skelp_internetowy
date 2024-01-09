@@ -34,6 +34,7 @@ const App = () => {
   console.log('Render komponentu. Aktualne dane:', data);
 
   return (
+
   <div className="App">
     <UserProvider>
       <Router>
@@ -53,9 +54,7 @@ const App = () => {
       </Router>
     </UserProvider>
   </div>
-  )
-};
-
+  )};
 export default App;
 
 // TODO

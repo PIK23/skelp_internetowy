@@ -12,8 +12,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                //sh 'cd backend/sklep && ./mvnw test -Dspring.profiles.active=test'
-		sh 'echo testy tutaj'            
+                sh 'cd frontend/src && npm test -- --coverage'
+		 sh 'cd ../ && cd ../'
+                sh 'cd backend/sklep && ./mvnw clean test -Dspring.profiles.active=test'
+          jacoco(execPattern: 'target/**/*.exec')         
 }
         }
         stage('Collect artifacts') {

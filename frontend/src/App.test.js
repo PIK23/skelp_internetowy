@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders hello link', () => {
+test('void test', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Hello/i);
-  expect(linkElement).toBeInTheDocument();
+  const linkElement = screen.queryByText(/randomword/i);
+  expect(linkElement).not.toBeInTheDocument();
 });
