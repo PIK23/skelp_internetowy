@@ -99,3 +99,12 @@ table {
 .button-container {
   margin-top: 15px; /* Dodaje odstęp między polami a przyciskiem */
 }
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Ustawia wysokość na 100% widoku */
+  margin: auto;
+}
