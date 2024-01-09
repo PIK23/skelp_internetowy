@@ -16,9 +16,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-        <div className="input-container">
-          <label>Username </label>
+    <div class="login">
+        <div class="input-container">
+          <label>Username</label>
           <input
           type="text"
           placeholder="Enter Username"
@@ -28,7 +28,7 @@ const Login = () => {
           required
         />
         </div>
-        <div className="input-container">
+        <div class="input-container">
           <label>Password </label>
           <input
           type="password"
@@ -39,7 +39,7 @@ const Login = () => {
           required
         />
         </div>
-      <div className="button-container">
+      <div class="button-container">
         <button onClick={handleLogin}>Log in</button>
       </div>
     </div>

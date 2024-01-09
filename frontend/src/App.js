@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:1234/products');
+        const response = await fetch('http://localhost:8080/api/products');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -40,10 +40,9 @@ const App = () => {
         { data ? (
           <Routes>
             <Route path="/details/:id" element={<ProductDetail products={data} />} />
-          <Route path="/" element={<ProductList products={data} />} />
-          {/* <Route path="/" element={<ProductList products={data} />} /> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
+            <Route path="/" element={<ProductList products={data} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         ): (
           <p>Ładu Ładu..</p>
