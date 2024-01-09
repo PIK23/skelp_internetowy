@@ -11,8 +11,9 @@ const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
+    console.log(typeof signup);
     register({ username, password, email});
-    navigate('/');
+    navigate('/login');
     //dodac obsluge keycloak
   };
 
