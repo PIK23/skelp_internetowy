@@ -20,24 +20,24 @@ const Login = () => {
         <div class="input-container">
           <label>Username</label>
           <input
-          type="text"
-          placeholder="Enter Username"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
+            type="text"
+            placeholder="Enter Username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
         </div>
         <div class="input-container">
           <label>Password </label>
           <input
-          type="password"
-          placeholder="Enter Password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+            type="password"
+            placeholder="Enter Password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
       <div class="button-container">
         <button onClick={handleLogin}>Log in</button>
