@@ -3,6 +3,6 @@ import App from './App';
 
 test('void test', () => {
   render(<App />);
-  //const linkElement = screen.getByText(/App/i);
-  //expect(linkElement).toBeInTheDocument();
+  const linkElement = screen.getByText(/randomword/i);
+  expect(linkElement).not.toBeInTheDocument();
 });
