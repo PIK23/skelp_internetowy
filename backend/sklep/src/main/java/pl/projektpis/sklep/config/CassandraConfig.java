@@ -20,8 +20,7 @@ import java.time.Duration;
 
 @Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
-
-    // ale to jest k... głupie, to po co jest config w application.properties???
+    
     @Override
     protected String getKeyspaceName() {
         return "sklep";
