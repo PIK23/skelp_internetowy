@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { useUser } from './UserContext';
+import { useUser, UserProvider } from './UserContext';
 import { useNavigate } from 'react-router-dom';
+import UserService from '../UserService';
 
 const Login = () => {
   const { login } = useUser();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
 
-  const handleLogin = () => {
-    login({ username, password });
-    navigate('/');
+  const handleLogin = async () => {
+    // navigate('/');
     //dodac obsluge keycloak
+    try {
+      await UserService.doLogin();
+      const userInfo = await UserService.getToken();
+      UserProvider.login(userInfo);
+    } catch (error) {
+      console.error('Error: ', error);
+    }
   };
 
   return (
     <div class="login">
-        <div class="input-container">
+        {/* <div class="input-container">
           <label>Username</label>
           <input
             type="text"
@@ -38,10 +43,14 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-      <div class="button-container">
-        <button onClick={handleLogin}>Log in</button>
-      </div>
+        </div> */}
+      {/* <div class="button-container"> */}
+        {UserService.isLoggedIn() ? (
+          <p>Jesteś zalogowany jako {UserService.getTokenParsed().preferred_username}</p>
+        ) : (
+          <button onClick={handleLogin}>Log in</button>
+        )}
+      {/* </div> */}
     </div>
   );
 };

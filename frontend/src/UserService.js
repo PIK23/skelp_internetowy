@@ -7,20 +7,20 @@ const _kc = new Keycloak('/keycloak.json');
  *
  * @param onAuthenticatedCallback
  */
-const initKeycloak = (onAuthenticatedCallback) => {
+const initKeycloak = () => {
     console.log('initializing keycloak');
     _kc.init({
         onLoad: 'check-sso',
         silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
         pkceMethod: 'S256',
     })
-        .then((authenticated) => {
-            if (!authenticated) {
-                console.log("user is not authenticated..!");
-            }
-            onAuthenticatedCallback();
-        })
-        .catch(console.error);
+        // .then((authenticated) => {
+        //     if (!authenticated) {
+        //         console.log("user is not authenticated..!");
+        //     }
+        //     onAuthenticatedCallback();
+        // })
+        // .catch(console.error);
 };
 
 const doLogin = _kc.login;
@@ -32,6 +32,8 @@ const getToken = () => _kc.token;
 const getTokenParsed = () => _kc.tokenParsed;
 
 const isLoggedIn = () => !!_kc.token;
+
+const getUserInfo = () => _kc.loadUserInfo;
 
 const updateToken = (successCallback) =>
     _kc.updateToken(5)
@@ -52,6 +54,7 @@ const UserService = {
     updateToken,
     getUsername,
     hasRole,
+    getUserInfo,
 };
 
 export default UserService;
