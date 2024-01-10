@@ -57,6 +57,3 @@ const App = () => {
 };
 
 export default App;
-
-// TODO
-//odkomentować pobieranie przez fetch

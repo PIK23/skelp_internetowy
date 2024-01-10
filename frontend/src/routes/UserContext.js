@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+// import Keycloak from 'keycloak-js';
+import UserService from '../UserService';
 
 const UserContext = createContext();
 
@@ -6,15 +8,27 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [newUser, setNewUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData);
+
+  const login = async () => {
+    try {
+      // Wywołaj uwierzytelnianie
+      const authenticated = await UserService.doLogin();
+
+      if (authenticated) {
+        // Jeśli uwierzytelnianie powiodło się, zaktualizuj stan użytkownika
+        setUser(UserService.getTokenParsed());
+      }
+    } catch (error) {
+      console.error('Error during Keycloak login: ', error);
+    }
   };
-  
+
   const register = (userData) => {
     setNewUser(userData);
-  }
+  };
 
   const logout = () => {
+    UserService.doLogout();
     setUser(null);
   };
 

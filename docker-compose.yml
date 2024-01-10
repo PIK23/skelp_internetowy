@@ -31,6 +31,7 @@ services:
     networks: [sklep_network]
     restart: unless-stopped
     depends_on: [cassandra]
+
   project-db:
     container_name: mySql
     image: mysql
@@ -41,8 +42,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: database
       MYSQL_PASSWORD: database
-    networks:
-      - sklep_network
+    networks: [sklep_network]
 
   project-keycloak:
     container_name: project-keycloak
@@ -62,10 +62,8 @@ services:
       KEYCLOAK_PASSWORD: user
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-    depends_on:
-      - project-db
-    networks:
-      - sklep_network
+    depends_on: [project-db]
+    networks: [sklep_network]
     command:
       - start-dev
 networks:
