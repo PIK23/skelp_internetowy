@@ -30,7 +30,11 @@ public class BasketController {
     public @ResponseBody List<Product> getBasketContents(Principal principal) {
         String owner = principal.getName();
         System.out.println(owner);
-        Basket basket = basketRepository.findOneByOwner(owner).orElseGet(() -> new Basket(owner));
+        Basket basket = basketRepository.findOneByOwner(owner).orElseGet(() -> {
+            Basket b = new Basket(owner);
+            basketRepository.save(b);
+            return b;
+        });
         return basket.getProducts();
 
     }
