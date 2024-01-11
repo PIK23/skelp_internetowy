@@ -22,7 +22,10 @@ class KeycloakConfig {
     @Bean
     public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/baskets").authenticated().anyRequest().permitAll()
-                );
+                ).formLogin(formLogin ->
+                        formLogin
+                        .loginPage("/")
+                        .permitAll());
         return http.build();
     }
 
