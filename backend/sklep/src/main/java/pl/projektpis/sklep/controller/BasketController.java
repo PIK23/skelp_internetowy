@@ -12,6 +12,7 @@ import pl.projektpis.sklep.entity.Product;
 import pl.projektpis.sklep.repository.BasketRepository;
 import pl.projektpis.sklep.repository.ProductRepository;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,22 +27,26 @@ public class BasketController {
     private ProductRepository productRepository;
 
     @RequestMapping(value = "/basket", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<Product> getBasketContents(@RequestParam UUID owner) {
+    public @ResponseBody List<Product> getBasketContents(Principal principal) {
         //@TODO somehow get user id from session
+        String owner = principal.getName();
+        System.out.println(owner);
         Basket basket = basketRepository.findOneByOwner(owner).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid basket id"));
         return basket.getProducts();
 
     }
 
     @RequestMapping(value = "/basket", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void addProductToBasket(@RequestParam UUID owner, @RequestParam UUID product) {
+    public void addProductToBasket(@RequestParam UUID product, Principal principal) {
+        String owner = principal.getName();
         Basket basket = basketRepository.findOneByOwner(owner).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid basket id"));
         basket.addProduct(productRepository.findById(product).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid product id")));
         basketRepository.save(basket);
     }
 
     @RequestMapping(value = "/basket", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void removeProductFromBasket(@RequestParam UUID owner, @RequestParam(required = false) UUID product, @RequestParam(required = false, defaultValue = "False") Boolean clear) {
+    public void removeProductFromBasket(Principal principal, @RequestParam(required = false) UUID product, @RequestParam(required = false, defaultValue = "False") Boolean clear) {
+        String owner = principal.getName();
         Basket basket = basketRepository.findOneByOwner(owner).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid basket id"));
         if (clear){
             basket.clear();

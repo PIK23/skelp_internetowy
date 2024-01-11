@@ -20,7 +20,7 @@ public class SklepApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
-        UUID id = UUID.randomUUID();
+        String id = UUID.randomUUID().toString();
         System.out.println("Testowy koszyk: "+id.toString());
         Basket testBasket = new Basket(id);
         basketRepository.save(testBasket);
