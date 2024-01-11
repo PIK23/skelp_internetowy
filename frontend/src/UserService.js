@@ -14,13 +14,6 @@ const initKeycloak = () => {
         silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
         pkceMethod: 'S256',
     })
-        // .then((authenticated) => {
-        //     if (!authenticated) {
-        //         console.log("user is not authenticated..!");
-        //     }
-        //     onAuthenticatedCallback();
-        // })
-        // .catch(console.error);
 };
 
 const doLogin = _kc.login;

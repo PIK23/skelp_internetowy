@@ -22,7 +22,7 @@ const Cart = () => {
         headers: {
           accept: 'application/json',
           authorization: `Bearer ${token}`
-      }
+        }
       })
         .then((response) => response.json())
         .catch((error) => {
@@ -32,11 +32,13 @@ const Cart = () => {
     };
 
     const deleteCartProduct = (productId) => {
+        let token = UserService.getToken();
         fetch(`http://localhost:8080/api/basket/${productId}`, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json',
-          },
+            accept: 'application/json',
+            authorization: `Bearer ${token}`
+          }
         })
           .then((response) => {
             if (!response.ok) {

@@ -14,32 +14,33 @@ const Header = () => {
         setInputValue(event.target.value);
     };
 
-  return (
-    <div className="header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Link className="button-link" to="/">Home</Link>
-        <input
-            type="text"
-            placeholder="Search"
-            className="search-input"
-            size="60"
-            onChange={handleInputChange}
-        />
-        <button className="button-link" onClick={() => handleSearch(phrase)}>Submit</button>
-        <Link className='button-link' to="/cart">Cart</Link>
-        <div className="right-buttons"></div>
-            {UserService.isLoggedIn() ? (
-                <>
-                    <Logout />
-                </>
-                ) : (
-                <>
-                    <Login />
-                    <Logout />
-                </>
-            )}
-    </div>
-  );
+    return (
+        <div className="header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <Link className="button-link" to="/">Home</Link>
+            <input
+                type="text"
+                placeholder="Search"
+                className="search-input"
+                size="60"
+                onChange={handleInputChange}
+            />
+            <button className="button-link" onClick={() => handleSearch(phrase)}>Submit</button>
+            <Link className='button-link' to="/cart">Cart</Link>
+            <div className="right-buttons">
+                {UserService.isLoggedIn() ? (
+                    <>
+                        <Logout />
+                    </>
+                    ) : (
+                    <>
+                        <Login />
+                        <Logout />
+                    </>
+                )}
+            </div>
+        </div>
+    );
 };
 
 export default Header;
