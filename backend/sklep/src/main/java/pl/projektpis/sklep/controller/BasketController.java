@@ -28,10 +28,9 @@ public class BasketController {
 
     @RequestMapping(value = "/basket", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<Product> getBasketContents(Principal principal) {
-        //@TODO somehow get user id from session
         String owner = principal.getName();
         System.out.println(owner);
-        Basket basket = basketRepository.findOneByOwner(owner).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid basket id"));
+        Basket basket = basketRepository.findOneByOwner(owner).orElseGet(() -> new Basket(owner));
         return basket.getProducts();
 
     }
