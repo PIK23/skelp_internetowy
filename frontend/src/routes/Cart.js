@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UserService from '../UserService';
 
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState([]);
@@ -15,11 +16,13 @@ const Cart = () => {
     }, []);
 
     const getCartDataFromApi = () => {
-      return fetch('http://localhost:1234/api/basket/user', {
+      let token = UserService.getToken();
+      return fetch('http://localhost:8080/api/basket', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-        },
+          accept: 'application/json',
+          authorization: `Bearer ${token}`
+      }
       })
         .then((response) => response.json())
         .catch((error) => {
@@ -29,7 +32,7 @@ const Cart = () => {
     };
 
     const deleteCartProduct = (productId) => {
-        fetch(`http://localhost:1234/api/basker/user/${productId}`, {
+        fetch(`http://localhost:8080/api/basket/${productId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
