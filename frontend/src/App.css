@@ -65,3 +65,46 @@ table {
   display: flex;
   align-items: center;
 }
+
+
+.button-container {
+  margin: 10px;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Ustawia wysokość na 100% widoku */
+  margin: auto;
+}
+
+.input-container {
+  margin-bottom: 15px; /* Dodaje odstęp między polami */
+}
+
+.button-container {
+  margin-top: 15px; /* Dodaje odstęp między polami a przyciskiem */
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Ustawia wysokość na 100% widoku */
+  margin: auto;
+}
