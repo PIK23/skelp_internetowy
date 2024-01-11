@@ -9,8 +9,8 @@ services:
     volumes:
       - ./ngnix:/etc/nginx/conf.d
       - ./frontend/build:/app/static
-    depends_on:
-      - sklep
+    # depends_on:
+    #   - sklep
 
 
   cassandra:
@@ -53,7 +53,7 @@ services:
     environment:
       PROXY_ADDRESS_FORWARDING: "true"
       DB_VENDOR: mysql
-      DB_ADDR: project-db
+      DB_ADDR: mySql
       DB_PORT: 3306
       DB_DATABASE: project_keycloak
       DB_USER: database
@@ -62,10 +62,20 @@ services:
       KEYCLOAK_PASSWORD: user
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      QUARKUS_DATASOURCE_REACTIVE_URL: jdbc:mysql://mySql:3306/project_keycloak
+      QUARKUS_DATASOURCE_REACTIVE_USERNAME: database
+      QUARKUS_DATASOURCE_REACTIVE_PASSWORD: database
+      QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY: "true"
     depends_on: [project-db]
+    volumes:
+      - keycloak_data:/opt/jboss/keycloak/standalone/data
     networks: [sklep_network]
     command:
       - start-dev
+
+volumes:
+  keycloak_data:
+
 networks:
   sklep_network:
     name: sklep_network

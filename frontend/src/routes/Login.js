@@ -22,35 +22,11 @@ const Login = () => {
 
   return (
     <div class="login">
-        {/* <div class="input-container">
-          <label>Username</label>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div class="input-container">
-          <label>Password </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div> */}
-      {/* <div class="button-container"> */}
-        {UserService.isLoggedIn() ? (
-          <p>Jesteś zalogowany jako {UserService.getTokenParsed().preferred_username}</p>
-        ) : (
-          <button onClick={handleLogin}>Log in</button>
-        )}
-      {/* </div> */}
+      {UserService.isLoggedIn() ? (
+        <p>Jesteś zalogowany jako {UserService.getTokenParsed().preferred_username}</p>
+      ) : (
+        <button onClick={handleLogin}>Log in</button>
+      )}
     </div>
   );
 };
