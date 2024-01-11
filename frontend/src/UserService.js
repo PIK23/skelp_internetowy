@@ -35,6 +35,8 @@ const isLoggedIn = () => !!_kc.token;
 
 const getUserInfo = () => _kc.loadUserInfo;
 
+const doRegister = () => _kc.register;
+
 const updateToken = (successCallback) =>
     _kc.updateToken(5)
         .then(successCallback)
@@ -55,6 +57,7 @@ const UserService = {
     getUsername,
     hasRole,
     getUserInfo,
+    doRegister,
 };
 
 export default UserService;
