@@ -12,9 +12,7 @@ const Login = () => {
   };
 
   return (
-    <div class="login">
-        <button className="button-link" onClick={handleLogin}>Log in</button>
-    </div>
+    <button className="button-link" onClick={handleLogin}>Log in</button>
   );
 };
 

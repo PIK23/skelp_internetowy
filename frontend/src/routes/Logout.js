@@ -1,7 +1,7 @@
 import React from 'react';
 import UserService from '../UserService';
 
-const RegistrationForm = () => {
+const Logout = () => {
 
   const handleRegister = async () => {
     try {
@@ -14,10 +14,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div class="register">
-        <button className="button-link" onClick={handleRegister}>Log out</button>
-    </div>
+    <button className="button-link" onClick={handleRegister}>Log out</button>
   );
 };
 
-export default RegistrationForm;
+export default Logout;

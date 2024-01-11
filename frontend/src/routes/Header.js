@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../logo.png';
 import Login from './Login';
 import UserService from '../UserService';
-import RegistrationForm from './Register';
+import Logout from './Logout';
 
 const Header = () => {
     const [phrase, setInputValue] = useState('');
@@ -30,12 +30,12 @@ const Header = () => {
         <div className="right-buttons"></div>
             {UserService.isLoggedIn() ? (
                 <>
-                    <RegistrationForm />
+                    <Logout />
                 </>
                 ) : (
                 <>
                     <Login />
-                    <RegistrationForm />
+                    <Logout />
                 </>
             )}
     </div>

@@ -4,8 +4,6 @@ import ProductDetail from './routes/ProductDetail';
 import ProductList from './routes/ProductList'
 import Header from './routes/Header';
 import Cart from './routes/Cart';
-import Login from './routes/Login';
-import RegistrationForm from './routes/Register';
 import './App.css';
 
 const App = () => {
@@ -36,17 +34,15 @@ const App = () => {
   <div className="App">
     <Router>
       <Header />
-        <Routes>
-        { data && (
-        <>
-          <Route path="/details/:id" element={<ProductDetail products={data} />} />
-          <Route path="/" element={<ProductList products={data} />} />
-        </>
+        { data ? (
+          <Routes>
+            <Route path="/details/:id" element={<ProductDetail products={data} />} />
+            <Route path="/" element={<ProductList products={data} />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        ) : (
+          <p>Ładu Ładu.. </p>
         )}
-          <Route path="/login"  element={<Login />} />
-          <Route path="/register" element={<RegistrationForm />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
       
     </Router>
   </div>
