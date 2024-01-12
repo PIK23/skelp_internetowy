@@ -13,17 +13,10 @@ import java.util.UUID;
 @SpringBootApplication
 public class SklepApplication {
 
-    @Autowired
-    private BasketRepository basketRepository;
+    //@Autowired
+    //private BasketRepository basketRepository;
 
     public static void main(String[] args) {SpringApplication.run(SklepApplication.class, args);}
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void doSomethingAfterStartup() {
-        String id = UUID.randomUUID().toString();
-        System.out.println("Testowy koszyk: "+id.toString());
-        Basket testBasket = new Basket(id);
-        basketRepository.save(testBasket);
-    }
 
 }

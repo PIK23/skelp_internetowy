@@ -2,7 +2,6 @@ package pl.projektpis.sklep.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -59,10 +58,4 @@ public class BasketController {
         }
         basketRepository.save(basket);
     }
-
-
-
-
-
-
 }
