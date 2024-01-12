@@ -9,8 +9,8 @@ services:
     volumes:
       - ./ngnix:/etc/nginx/conf.d
       - ./frontend/build:/app/static
-    # depends_on:
-    #   - sklep
+    depends_on:
+      - sklep
 
 
   cassandra:
