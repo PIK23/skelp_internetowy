@@ -23,7 +23,8 @@ const ProductDetail = ({ products }) => {
       <p>Price: {product.cena} zł</p>
       <p>Weight: {waga + pr}</p>
       <p>Dimensions: {product.wymiary}</p>
-      <img src={"data:image/png;base64," +product.image_base64} alt={product.nazwa} />
+      {product.image_base64 && (<img alt={product.nazwa} src={'data:image/png;base64,' + product.image_base64} height="128px" style={{ marginRight: '10px' }}/>
+      )}
     </div>
   );
 };

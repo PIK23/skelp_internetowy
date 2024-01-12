@@ -5,6 +5,7 @@ import ProductList from './routes/ProductList'
 import Header from './routes/Header';
 import Cart from './routes/Cart';
 import './App.css';
+import Summary from './routes/Summary';
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/details/:id" element={<ProductDetail products={data} />} />
             <Route path="/" element={<ProductList products={data} />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/summary" element={<Summary/>} />
           </Routes>
         ) : (
           <p>Ładu Ładu.. </p>

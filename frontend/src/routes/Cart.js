@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UserService from '../UserService';
+import Summary from './Summary';
 
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
       getCartDataFromApi()
@@ -14,6 +17,14 @@ const Cart = () => {
           console.error('Error fetching cart data:', error);
         });
     }, []);
+
+    const handleSummary = async () => {
+      try {
+        navigate('/summary');
+      } catch (error) {
+        console.error('Error: ', error);
+      }
+    };
 
     const getCartDataFromApi = () => {
       let token = UserService.getToken();
@@ -81,6 +92,9 @@ const Cart = () => {
               ))}
             </tbody>
           </table>
+          <button className='button-link' onClick={handleSummary}>
+            Go to summary
+          </button>
         </div>
       );
     };
