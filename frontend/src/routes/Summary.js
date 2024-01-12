@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserService from '../UserService';
-import { useNavigate } from 'react-router-dom';
 
 const Summary = () => {
     const [products, setProducts] = useState([]);
