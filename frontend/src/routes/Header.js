@@ -8,9 +8,11 @@ import Login from './Login';
 import UserService from '../UserService';
 import Logout from './Logout';
 
-const Header = () => {
+const Header = ({onFetchData}) => {
     const [phrase, setInputValue] = useState('');
-    const handleSearch = (phrase) => {
+    const handleSearch = (phrase, value) => {
+        console.log(value);
+        onFetchData(value);
         console.log(`Searched: ${phrase}`);
     };
     const handleInputChange = (event) => {
@@ -21,6 +23,7 @@ const Header = () => {
     const minDistance = 1;
 
     const handleChange = (event, newValue) => {
+      onFetchData(newValue);
       if (!Array.isArray(newValue)) {
         return;
       }
@@ -59,7 +62,7 @@ const Header = () => {
               </Box>
               </Tooltip>
             </div>
-            <button className="button-link" onClick={() => handleSearch(phrase)}>Submit</button>
+            <button className="button-link" onClick={() => handleSearch(phrase, value)}>Submit</button>
             <div className="right-buttons">
                 {user ? (
                     <>

@@ -9,32 +9,49 @@ import Summary from './routes/Summary';
 
 const App = () => {
   const [data, setData] = useState(null);
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/products');
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+      const getproducts = async () => {
+        try {
+          const response = await fetch(`http://localhost:8080/api/products`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const jsonData = await response.json();
+          console.log('Pobrane dane:', jsonData);
+          setData(jsonData);
+        } catch (error) {
+          console.error('Błąd pobierania danych:', error.message);
         }
-
-        const jsonData = await response.json();
-        console.log('Pobrane dane:', jsonData);
-        setData(jsonData);
-      } catch (error) {
-        console.error('Błąd pobierania danych:', error.message);
       }
-    };
+      getproducts();
+    }, []);
 
-    fetchData();
-  }, []);
+
+  const fetchData = async (newValues) => {
+    try {
+      if (!newValues) {
+        newValues = [0, 10000];
+      }
+      const response = await fetch(`http://localhost:8080/api/products?minPrice=${newValues[0]}&maxPrice=${newValues[1]}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const jsonData = await response.json();
+      console.log('Pobrane dane:', jsonData);
+      setData(jsonData);
+    } catch (error) {
+      console.error('Błąd pobierania danych:', error.message);
+    }
+  };
 
   console.log('Render komponentu. Aktualne dane:', data);
 
   return (
   <div className="App">
     <Router>
-      <Header />
+      <Header onFetchData={fetchData}/>
         { data ? (
           <Routes>
             <Route path="/details/:id" element={<ProductDetail products={data} />} />
