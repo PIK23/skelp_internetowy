@@ -13,6 +13,6 @@ public interface ProductRepository extends CassandraRepository<Product, UUID> {
 
     Optional<Product> findByNazwa(String name);
 
-    LinkedList<Product> findByCenaLessThanEqual(Double cena);
+    LinkedList<Product> findByCenaBetween(Double cena_min, Double cena_max);
 
 }

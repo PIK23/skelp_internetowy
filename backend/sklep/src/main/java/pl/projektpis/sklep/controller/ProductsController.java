@@ -18,9 +18,9 @@ public class ProductsController {
     private ProductRepository productRepository;
 
     @RequestMapping(value = "/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody List<Product> getAllProducts(@RequestParam(required = false) Double maxPrice) {
-        if (maxPrice!=null)
-            return productRepository.findByCenaLessThanEqual(maxPrice);
+    public @ResponseBody List<Product> getAllProducts(@RequestParam(required = false) Double minPrice, @RequestParam(required = false) Double maxPrice) {
+        if (minPrice!=null && maxPrice!=null)
+            return productRepository.findByCenaBetween(minPrice, maxPrice);
         else
             return productRepository.findAll();
     }
