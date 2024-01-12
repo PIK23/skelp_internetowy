@@ -16,7 +16,7 @@ const ProductDetail = ({ products }) => {
       <p>Price: {product.price} zł</p>
       <p>Weight: {product.weight}</p>
       <p>Dimensions: {product.dimensions}</p>
-      {product.photo && (<img alt={product.name} src={product.photo} height="128px" style={{ marginRight: '10px' }}/>
+      {product.photo && (<img alt={product.name} src={'data:image/png;base64,' + product.photo} height="128px" style={{ marginRight: '10px' }}/>
       )}
     </div>
   );

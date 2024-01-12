@@ -14,7 +14,7 @@ const ProductList = ({ products }) => {
               {products.map((product, index) => (
                 <tr key={index}>
                   <td style={{ display: 'flex', alignItems: 'center' }}>
-                    <img alt={product.name} src={product.photo} height="128px" style={{ marginRight: '10px' }} />
+                    <img alt={product.name} src={'data:image/png;base64,' + product.photo} height="128px" style={{ marginRight: '10px' }} />
                   </td>
                   <td>
                     <Link to={`/details/${index}`}>{product.name}</Link>
