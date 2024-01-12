@@ -23,7 +23,7 @@ class KeycloakConfig {
         http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/basket").authenticated().anyRequest().permitAll()
                 )                .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt
-                        .jwkSetUri("http://project-keycloak:8180/realms/sklep/protocol/openid-connect/certs")
+                        .jwkSetUri("http://project-keycloak:8080/realms/sklep/protocol/openid-connect/certs")
                 ));
         return http.build();
     }
