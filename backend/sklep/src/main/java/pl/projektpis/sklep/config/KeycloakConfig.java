@@ -19,19 +19,12 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 @EnableWebSecurity
 class KeycloakConfig {
     @Bean
-    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
-    }
-    @Bean
     public SecurityFilterChain clientFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/baskets").authenticated().anyRequest().permitAll()
-                ).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+        http.authorizeHttpRequests((authorize) -> authorize.requestMatchers("/basket").authenticated().anyRequest().permitAll()
+                )                .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt
+                        .jwkSetUri("http://project-keycloak:8180/realms/sklep/protocol/openid-connect/certs")
+                ));
         return http.build();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .build();
     }
 }
