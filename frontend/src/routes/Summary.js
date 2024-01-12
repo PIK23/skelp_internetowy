@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import UserService from '../UserService';
 import { useNavigate } from 'react-router-dom';
 
-const Summmary = () => {
+const Summary = () => {
     const [products, setProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();

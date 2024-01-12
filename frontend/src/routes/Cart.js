@@ -78,7 +78,7 @@ const Cart = () => {
               ))}
             </tbody>
           </table>
-          <button className='button-link' onClick={navigate('/')}>
+          <button className='button-link' onClick={navigate('/summary')}>
             Go to summarry
           </button>
         </div>
