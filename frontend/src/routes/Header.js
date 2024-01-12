@@ -13,6 +13,7 @@ const Header = () => {
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
+    const user = UserService.getUsername();
 
     return (
         <div className="header">
@@ -26,16 +27,16 @@ const Header = () => {
                 onChange={handleInputChange}
             />
             <button className="button-link" onClick={() => handleSearch(phrase)}>Submit</button>
-            <Link className='button-link' to="/cart">Cart</Link>
             <div className="right-buttons">
-                {UserService.isLoggedIn() ? (
+                {user ? (
                     <>
+                        <Link className='button-link' to="/cart">Cart</Link>
+                        <p>Jesteś zalogowany jako {user}   </p>
                         <Logout />
                     </>
                     ) : (
                     <>
                         <Login />
-                        <Logout />
                     </>
                 )}
             </div>

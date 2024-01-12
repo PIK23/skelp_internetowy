@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import cart from './../cart.png'
+import cart from './../cart.png';
+import UserService from '../UserService';
 
 
 const ProductList = ({ products }) => {
-    const handleAddToCart = (productName) => {
-        console.log(`Product added to cart: ${productName}`);
+    const handleAddToCart = (product) => {
+        console.log(`Product added to cart: ${product.nazwa}`);
+        let token = UserService.getToken();
+        fetch(`http://localhost:8080/api/basket?product=${product.id}`, {
+          method: 'PUT',
+          headers: {
+            accept: 'application/json',
+            authorization: `Bearer ${token}`
+          }
+        })
       };
       return (
         <div className='Margin'>
@@ -28,7 +37,7 @@ const ProductList = ({ products }) => {
                 </td>
                 <td>{product.cena}</td>
                 <td>
-                    <button onClick={() => handleAddToCart(product.nazwa)} className='cart'>
+                    <button onClick={() => handleAddToCart(product)} className='cart'>
                     <img alt="Add to cart" src={cart} height="64px" />
                     </button>
                   </td>
