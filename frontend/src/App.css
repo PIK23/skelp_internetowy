@@ -83,9 +83,28 @@ table {
   margin: 10px;
 }
 
-.container {
-  border: 5px solid rgb(6, 87, 154); /* Set the border style, width, and color for the container */
-  padding: 5px; /* Optional: Add padding to create space between the border and objects */
-  opacity: 0.7;
-  border-radius: 10px;
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Ustawia wysokość na 100% widoku */
+  margin: auto;
+}
+
+.input-container {
+  margin-bottom: 15px; /* Dodaje odstęp między polami */
+}
+
+.button-container {
+  margin-top: 15px; /* Dodaje odstęp między polami a przyciskiem */
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Ustawia wysokość na 100% widoku */
+  margin: auto;
 }
