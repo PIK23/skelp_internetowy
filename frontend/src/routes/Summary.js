@@ -37,7 +37,7 @@ const Summary = () => {
     const deleteProducts = () => {
         let token = UserService.getToken();
         return fetch('http://localhost:8080/api/basket?clear=true', {
-            method: 'PUT',
+            method: 'DELETE',
             headers: {
             accept: 'application/json',
             authorization: `Bearer ${token}`
@@ -62,16 +62,7 @@ const Summary = () => {
             <tbody>
               {products.map((product, index) => (
                 <tr key={index}>
-                  <td style={{ display: 'flex', alignItems: 'center' }}>
-                    {product.image_base64 && (
-                      <img
-                        alt={product.nazwa}
-                        src={"data:image/png;base64," +product.image_base64}
-                        height="128px"
-                        style={{ marginRight: '10px' }}
-                      />
-                    )}
-                  </td>
+                  <td>{product.nazwa}</td>
                   <td>{product.cena}</td>
                 </tr>
               ))}
