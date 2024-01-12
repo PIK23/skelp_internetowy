@@ -1,1 +1,1 @@
-Projekt PIS - sklep internetowy
+Projekt PIS - sklep internetowy.
