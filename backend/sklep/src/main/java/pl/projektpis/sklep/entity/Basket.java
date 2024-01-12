@@ -23,7 +23,7 @@ public class Basket {
     private ProductRepository productRepository;
 
     //create basket for this owner
-    public Basket(UUID owner){
+    public Basket(String owner){
         this.owner = owner;
     }
 
@@ -52,7 +52,7 @@ public class Basket {
     }
 
     @PrimaryKey
-    private UUID owner;
+    private String owner;
     // this needs to be a concrete type
     private LinkedList<Product> products;
 

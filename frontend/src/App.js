@@ -4,9 +4,6 @@ import ProductDetail from './routes/ProductDetail';
 import ProductList from './routes/ProductList'
 import Header from './routes/Header';
 import Cart from './routes/Cart';
-import { UserProvider } from './routes/UserContext';
-import Login from './routes/Login';
-import RegistrationForm from './routes/Register';
 import './App.css';
 
 const App = () => {
@@ -35,28 +32,21 @@ const App = () => {
 
   return (
   <div className="App">
-    <UserProvider>
-      <Router>
-        <Header />
+    <Router>
+      <Header />
         { data ? (
           <Routes>
             <Route path="/details/:id" element={<ProductDetail products={data} />} />
             <Route path="/" element={<ProductList products={data} />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<RegistrationForm />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
-        ): (
-          <p>Ładu Ładu..</p>
+        ) : (
+          <p>Ładu Ładu.. </p>
         )}
-        
-      </Router>
-    </UserProvider>
+      
+    </Router>
   </div>
   )
 };
 
 export default App;
-
-// TODO
-//odkomentować pobieranie przez fetch

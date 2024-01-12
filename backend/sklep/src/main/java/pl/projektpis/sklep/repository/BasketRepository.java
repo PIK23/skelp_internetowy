@@ -13,6 +13,6 @@ import java.util.UUID;
 @Repository
 public interface BasketRepository extends CassandraRepository<Basket, UUID> {
 
-    public Optional<Basket> findOneByOwner(UUID user);
+    public Optional<Basket> findOneByOwner(String user);
     public LinkedList<Basket> findAll(); //for testing
 }

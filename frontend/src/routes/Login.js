@@ -1,48 +1,18 @@
-import React, { useState } from 'react';
-import { useUser } from './UserContext';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import UserService from '../UserService';
 
 const Login = () => {
-  const { login } = useUser();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-
-  const handleLogin = () => {
-    login({ username, password });
-    navigate('/');
-    //dodac obsluge keycloak
+  const handleLogin = async () => {
+    try {
+      await UserService.doLogin();
+    } catch (error) {
+      console.error('Error: ', error);
+    }
   };
 
   return (
-    <div class="login">
-        <div class="input-container">
-          <label>Username</label>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div class="input-container">
-          <label>Password </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-      <div class="button-container">
-        <button onClick={handleLogin}>Log in</button>
-      </div>
-    </div>
+    <button className="button-link" onClick={handleLogin}>Log in</button>
   );
 };
 

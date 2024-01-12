@@ -18,12 +18,5 @@ public class SklepApplication {
 
     public static void main(String[] args) {SpringApplication.run(SklepApplication.class, args);}
 
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void doSomethingAfterStartup() {
-//        UUID id = UUID.randomUUID();
-//        System.out.println("Testowy koszyk: "+id.toString());
-//        Basket testBasket = new Basket(id);
-//        basketRepository.save(testBasket);
-//    }
 
 }
